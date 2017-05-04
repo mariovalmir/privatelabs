@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" 
+	template="#{userSettingsMB.layout}">
+
+<ui:define name="body">
+
+	<div class="Container100">
+	    <div class="ContainerIndent">
+	        <div class="Card ShadowEffect">
+	        	<p:panel id="panel" header="#{msg['curso.lista']}">
+					<h:form id="form">
+						<div class="ShowOnDesktop">
+							<p:commandButton action="curso-form?faces-redirect=true" ajax="false" icon="ui-icon-document" value="#{msg['label.new']}" />
+							<p:commandButton value="#{msg['label.delete']}" icon="ui-icon-trash" action="#{cursoListMB.exclui}" update="@form"
+								rendered="#{sessionMB.hasPermission('CURSO-EXCLUIR')}" />
+							<p:commandButton value="Imprimir" icon="ui-icon-arrowthichk-s" ajax="false">
+								<p:fileDownload value="#{cursoListMB.imprime()}" />
+							</p:commandButton>
+							<p:commandButton value="Pesquisar..." icon="ui-icon-search" oncomplete="PF('pesquisarCurso').show()" />
+						</div>
+						<div class="ShowOnMobile">
+							<p:splitButton action="curso-form?faces-redirect=true" ajax="false" icon="ui-icon-document" value="#{msg['label.new']}">
+								<p:menuitem value="#{msg['label.delete']}" icon="ui-icon-trash" action="#{cursoListMB.exclui}" update="@form" rendered="#{sessionMB.hasPermission('CURSO-EXCLUIR')}" />
+								<p:menuitem value="Imprimir" icon="ui-icon-arrowthichk-s" ajax="false">
+									<p:fileDownload value="#{cursoListMB.imprime()}" />
+								</p:menuitem>
+								<p:menuitem value="Pesquisar..." icon="ui-icon-search" oncomplete="PF('pesquisarCurso').show()" />
+							</p:splitButton>
+						</div>
+						<p:separator />
+						<p:dataTable id="lista" var="c" rowKey="#{c.id}" value="#{cursoListMB.paginator.datamodel}" paginator="true" rows="25" lazy="true"
+							paginatorTemplate="#{msg['datatable.paginatorTemplate']}" currentPageReportTemplate="#{msg['datatable.pageReportTemplate']}"
+							rowsPerPageTemplate="25,50,100" pageLinks="5" paginatorPosition="bottom" selection="#{cursoListMB.paginator.selection}"
+							sortBy="#{c.tituloCur}" reflow="true">
+							<p:column selectionMode="multiple" width="17" priority="3" />
+							<p:column sortBy="#{c.tituloCur}" width="49%" priority="1">
+								<f:facet name="header">
+									<h:outputText value="#{msg['curso.titulo']}" />
+								</f:facet>
+								<h:link value="#{c.tituloCur}" outcome="curso-form.xhtml">
+									<f:param name="id" value="#{c.id}" />
+								</h:link>
+							</p:column>
+							<p:column sortBy="#{c.txtSinopseCur}" headerText="#{msg['curso.sinopse']}" priority="2" width="30%">
+								<h:outputText value="#{c.txtSinopseCur}" />
+							</p:column>
+							<p:column sortBy="#{c.vlrPreco}" headerText="#{msg['curso.preco']}" width="20%" priority="1">
+								<h:outputText value="#{c.vlrPreco}">
+									<f:convertNumber type="currency" currencySymbol="R$" />
+								</h:outputText>
+							</p:column>
+						</p:dataTable>
+					</h:form>
+				</p:panel>
+			</div>
+		</div>
+	</div>
+
+	<p:dialog header="Pesquisar Cursos" widgetVar="pesquisarCurso" responsive="true" width="30%" style="min-width: 320px;" modal="true" resizable="false" dynamic="true">
+		<h:form>
+			<div class="Wid100 DispBlock MarAuto">
+				<div class="Wid100 MarAuto WidAutoOnMobile">
+					<p:commandButton value="OK" action="#{cursoListMB.pesquisa()}" update="@form :form:lista" />
+					<p:commandButton value="Limpar" action="#{cursoListMB.limpa()}" update="@form :form:lista" />
+					<p:commandButton value="Fechar" oncomplete="PF('pesquisarCurso').hide()" />
+					<p:separator />
+		    		<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-2,ui-grid-col-9,ui-grid-col-1">
+						<p:outputLabel for="tituloCur" value="#{msg['curso.titulo']}" />
+						<p:inputText id="tituloCur" value="#{cursoListMB.ped.tituloCur}" />
+						<p:message for="tituloCur" />
+						<p:outputLabel for="vlrPreco" value="#{msg['curso.preco']}" />
+						<h:panelGroup>
+							<p:inputNumber id="vlrPreco" value="#{cursoListMB.ped.vlrPreco}" symbol="R$ " decimalSeparator="," thousandSeparator="." size="10" />
+							<p:spacer width="10" />
+							<p:outputLabel for="vlrPrecoFinal" value="#{msg['label.ate']}" />
+							<p:spacer width="10" />
+							<p:inputNumber id="vlrPrecoFinal" value="#{cursoListMB.ped.vlrPrecoFinal}" symbol="R$ " decimalSeparator="," thousandSeparator="." size="10"  />
+						</h:panelGroup>
+						<h:panelGroup>
+							<p:message for="vlrPreco" display="icon" />
+							<p:message for="vlrPrecoFinal" display="icon" />
+						</h:panelGroup>
+					</p:panelGrid>
+				</div>
+			</div>
+		</h:form>
+	</p:dialog>
+
+</ui:define>
+</ui:composition>

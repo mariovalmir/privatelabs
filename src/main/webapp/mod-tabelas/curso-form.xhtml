@@ -1,0 +1,79 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" 
+	template="#{userSettingsMB.layout}">
+	
+<ui:define name="body">
+	<f:metadata>
+		<f:viewParam name="id" value="#{cursoFormMB.id}" converter="javax.faces.Integer" />
+		<f:event type="preRenderView" listener="#{cursoFormMB.init}" />
+	</f:metadata>
+
+	<div class="Container100">
+		<div class="ContainerIndent">
+			<div class="Card ShadowEffect">
+				<p:panel id="panel" header="#{msg['curso.form']}">
+					<h:form id="form" prependId="false">
+						<p:focus />
+						<p:tooltip />
+						<div class="ShowOnDesktop">
+							<p:commandButton value="#{msg['label.save']}" action="#{cursoFormMB.salva}" update="@form" icon="ui-icon-check"/>
+							<p:commandButton value="#{msg['label.delete']}" action="#{cursoFormMB.exclui}" process="@this" rendered="#{not cursoFormMB.inclusao}" icon="ui-icon-trash" />
+							<p:commandButton value="#{msg['label.back']}" action="curso-list?faces-redirect=true" process="@this" icon="ui-icon-close" />
+						</div>
+						<div class="ShowOnMobile">
+							<p:splitButton value="#{msg['label.save']}" action="#{cursoFormMB.salva}" update="@form" icon="ui-icon-check">
+								<p:menuitem value="#{msg['label.delete']}" action="#{cursoFormMB.exclui}" process="@this" rendered="#{not cursoFormMB.inclusao}" icon="ui-icon-trash" />
+								<p:menuitem value="#{msg['label.back']}" action="curso-list?faces-redirect=true" process="@this" icon="ui-icon-close" />
+							</p:splitButton>
+						</div>
+						<p:separator />
+						<p:tabView dynamic="true" cache="true">
+							<p:tab title="Geral">
+								<p:panelGrid columns="3" layout="grid" columnClasses="ui-grid-col-1,ui-grid-col-5,ui-grid-col-1">
+						        	<p:outputLabel for="id" value="#{msg['label.id']}" />
+						        	<p:inputText id="id" value="#{cursoFormMB.ed.nroIntCur}" required="true" readonly="true" styleClass="Wid30" />
+						        	<p:message for="id" />
+						        	<p:outputLabel for="tituloCur" value="#{msg['curso.titulo']}" />
+						        	<p:inputText id="tituloCur" value="#{cursoFormMB.ed.tituloCur}" styleClass="Wid90" />
+									<p:message for="tituloCur" />
+						        	<p:outputLabel for="txtSinopseCur" value="#{msg['curso.sinopse']}" />
+						        	<h:panelGroup>
+										<p:inputTextarea id="txtSinopseCur" value="#{cursoFormMB.ed.txtSinopseCur}" required="true" maxlength="255" counter="counter"
+											counterTemplate="{0} caracteres restantes." autoResize="false" style="width:95%;" />
+										<br /><h:outputText id="counter" />
+									</h:panelGroup>
+									<p:message for="txtSinopseCur" display="tooltip" />
+						        	<p:outputLabel for="vlrPreco" value="#{msg['curso.preco']}" />
+									<p:inputNumber id="vlrPreco" value="#{cursoFormMB.ed.vlrPreco}" symbol="R$ " decimalSeparator="," thousandSeparator="." />
+									<p:message for="vlrPreco" />
+								</p:panelGrid>
+							</p:tab>
+							<p:tab title="Dados de Controle" rendered="#{!cursoFormMB.inclusao}">
+								<p:panelGrid columns="2" layout="grid" columnClasses="ui-grid-col-2,ui-grid-col-10">
+									<h:outputText value="#{msg['label.ctrDthInc']}" />
+									<h:outputText value="#{cursoFormMB.ed.ctrDthInc.time}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+									</h:outputText>
+									<h:outputText value="#{msg['label.ctrUsuInc']}" />
+									<h:outputText value="#{cursoFormMB.ed.ctrUsuInc}" />
+									<h:outputText value="#{msg['label.ctrNroIpInc']}" />
+									<h:outputText value="#{cursoFormMB.ed.ctrNroIpInc}" />
+									<h:outputText value="#{msg['label.ctrDthAtu']}" />
+									<h:outputText value="#{cursoFormMB.ed.ctrDthAtu.time}">
+										<f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
+									</h:outputText>
+									<h:outputText value="#{msg['label.ctrUsuAtu']}" />
+									<h:outputText value="#{cursoFormMB.ed.ctrUsuAtu}" />
+									<h:outputText value="#{msg['label.ctrNroIpAtu']}" />
+									<h:outputText value="#{cursoFormMB.ed.ctrNroIpAtu}" />
+								</p:panelGrid>
+							</p:tab>
+						</p:tabView>
+					</h:form>
+				</p:panel>
+			</div>
+		</div>
+	</div>
+</ui:define>
+
+</ui:composition>

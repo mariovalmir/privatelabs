@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/base.xhtml">
+
+	<ui:param name="bodyStyleClass" value="loginbodyblue" />
+
+	<ui:define name="content-base">
+	
+		<f:metadata>
+			<o:enableRestorableView />
+			<f:viewParam name="page" value="#{logonFormMB.page}" />
+		</f:metadata>
+
+		<h:form>
+			<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
+				<div class="Wid33 MarAuto WidAutoOnMobile">
+					<h:graphicImage name="images/logo.svg" library="rio-layout" style="width:40%; max-width:200px;" />
+					<div class="EmptyBox30"></div>
+					<div class="Card ShadowEffect">
+						<div class="EmptyBox20"></div>
+						<div class="Wid100 OvHidden BigTopic Fs24">
+							<i class="icon-users Fs40"></i> Prazo da senha expirou. Informe uma nova senha.
+						</div>
+						<div class="EmptyBox20"></div>
+						<div class="Wid100">
+							<p:messages autoUpdate="true" showDetail="true" showSummary="false" closable="true" />
+						</div>
+						<div class="Wid100">
+							<p:password id="senhaAtual" value="#{logonFormMB.ed.senhaAtual}" label="Senha atual" required="true" placeholder="Senha atual"
+								styleClass="Wid80 TexAlCenter Fs18" />
+						</div>
+						<div class="EmptyBox10"></div>
+						<div class="Wid100" style="text-align: center;">
+					   		<p:password id="novaSenha" value="#{logonFormMB.ed.novaSenha}" match="novaSenhaConfirma" label="Nova senha" required="true" 
+					   			validatorMessage="Confirmação da senha não confere." placeholder="Nova senha"
+					   			feedback="true" weakLabel="Fraca" goodLabel="Média" strongLabel="Forte" promptLabel="Digite a nova senha" inline="false"
+					   			styleClass="Wid80 TexAlCenter Fs18"  />
+						</div>
+						<div class="EmptyBox10"></div>
+						<div class="Wid100">
+					   		<p:password id="novaSenhaConfirma" value="#{logonFormMB.ed.novaSenhaConfirma}" label="Confirme nova senha" required="true" 
+					   			validatorMessage="Confirmação da senha não confere."  placeholder="Confirme nova senha"
+					   			feedback="true" weakLabel="Fraca" goodLabel="Média" strongLabel="Forte" promptLabel="Repita a nova senha" inline="false" 
+					   			styleClass="Wid80 TexAlCenter Fs18" />
+						</div>
+						<div class="EmptyBox20"></div>
+						<div class="Wid100">
+							<p:commandButton value="Confirmar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton" action="#{logonFormMB.alteraSenhaLogon}" process="@form" update="@form" />
+						</div>
+						<div class="EmptyBox5"></div>
+						<div class="Wid100">
+							<p:commandButton value="Cancelar" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" action="#{logonFormMB.cancelaAlteraSenha()}" immediate="true" ajax="false" />
+						</div>
+						<div class="EmptyBox30"></div>
+					</div>
+					<div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
+						<i class="fa fa-copyright"></i>  PROCERGS <br/> Todos os direitos reservados.
+					</div>
+				</div>
+			</div>
+		</h:form>
+	</ui:define>
+</ui:composition>

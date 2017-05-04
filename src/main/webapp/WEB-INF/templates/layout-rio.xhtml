@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/base.xhtml">
+
+	<ui:define name="content-base">
+
+        <ui:include src="topbar.xhtml" />
+        
+        <div id="wrapper">
+            <div id="wrapperIndent">
+
+                <ui:include src="menu.xhtml" />
+
+                <div id="layout-portlets-cover">
+                    
+                    <ui:insert name="body" />
+                    <ui:insert name="content" />
+                    
+                    <div class="Container100">
+                        <div class="ContainerIndent Fs12 BoldGray FontRobotoRegular">
+                            <div class="EmptyBox10"></div>
+                            <i class="icon-mountains14 Fs16 Fleft"></i> PROCERGS  |  Todos os direitos reservados.
+                            <div class="EmptyBox10"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <p:ajaxStatus style="width:32px;height:32px;position:fixed;right:7px;bottom:7px">
+                    <f:facet name="start">
+                        <p:graphicImage name="images/preloader.gif" library="rio-layout"/>
+                    </f:facet>
+
+                    <f:facet name="complete">
+                        <h:outputText value="" />
+                    </f:facet>
+                </p:ajaxStatus>
+            </div>
+        </div>
+
+	    <p:dialog widgetVar="senha" appendTo="@(body)" modal="true" responsive="true" width="50%" style="min-width: 320px;" resizable="false" showHeader="false" closeOnEscape="true">
+			<h:form>
+				<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
+					<div class="Wid100 MarAuto WidAutoOnMobile">
+						<div class="Card ShadowEffect">
+							<div class="EmptyBox20"></div>
+							<div class="Wid100 OvHidden BigTopic Fs24">
+								<i class="icon-users Fs40"></i> Informe uma nova senha
+							</div>
+							<div class="EmptyBox20"></div>
+							<div class="Wid100">
+								<p:messages showDetail="true" showSummary="false" closable="true"  />
+							</div>
+							<div class="EmptyBox20"></div>
+							<div class="Wid100">
+								<p:password id="senhaAtual" value="#{logonFormMB.ed.senhaAtual}" label="Senha atual" required="true" placeholder="Senha atual"
+									styleClass="Wid80 TexAlCenter Fs18" />
+							</div>
+							<div class="EmptyBox10"></div>
+							<div class="Wid100" style="text-align: center;">
+						   		<p:password id="novaSenha" value="#{logonFormMB.ed.novaSenha}" match="novaSenhaConfirma" label="Nova senha" required="true" 
+						   			validatorMessage="Confirmação da senha não confere." placeholder="Nova senha"
+						   			feedback="true" weakLabel="Fraca" goodLabel="Média" strongLabel="Forte" promptLabel="Digite a nova senha" inline="false"
+						   			styleClass="Wid80 TexAlCenter Fs18"  />
+							</div>
+							<div class="EmptyBox10"></div>
+							<div class="Wid100">
+						   		<p:password id="novaSenhaConfirma" value="#{logonFormMB.ed.novaSenhaConfirma}" label="Confirme nova senha" required="true" 
+						   			validatorMessage="Confirmação da senha não confere."  placeholder="Confirme nova senha"
+						   			feedback="true" weakLabel="Fraca" goodLabel="Média" strongLabel="Forte" promptLabel="Repita a nova senha" inline="false" 
+						   			styleClass="Wid80 TexAlCenter Fs18" />
+							</div>
+							<div class="EmptyBox20"></div>
+							<div class="Wid100">
+								<p:commandButton value="Confirmar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton" action="#{logonFormMB.alteraSenhaLogon}" process="@form" update="@form" />
+							</div>
+							<div class="EmptyBox5"></div>
+							<div class="Wid100">
+								<p:commandButton value="Cancelar" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" oncomplete="PF('senha').hide();" process="@this" update="@form">
+									<p:resetInput target="@form" />
+								</p:commandButton>
+							</div>
+							<div class="EmptyBox30"></div>
+						</div>
+						<!-- 
+						<div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
+							<i class="fa fa-copyright"></i> PrimeFaces RIO Theme And Layout <br /> All rights reserved.
+						</div>
+						 -->
+					</div>
+				</div>
+			</h:form>
+	    </p:dialog>
+
+	    <p:confirmDialog appendTo="@(body)" widgetVar="confirmLogoff" message="Deseja realmente sair da aplicação?" showEffect="fade" hideEffect="fade" header="Confirme">
+	        <p:button value="Sim" styleClass="ui-confirmdialog-yes" icon="ui-icon-check fa fa-check Fs14 White" href="/logoff" />
+	        <p:button value="Não" styleClass="ui-confirmdialog-no" icon="ui-icon-close fa fa-close Fs14 White" onclick="PF('confirmLogoff').hide(); return false;" />
+	    </p:confirmDialog>
+
+		<p:growl showDetail="true" globalOnly="true" autoUpdate="true" showSummary="false" />
+
+	</ui:define>
+</ui:composition>

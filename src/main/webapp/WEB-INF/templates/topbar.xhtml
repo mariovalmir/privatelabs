@@ -1,0 +1,97 @@
+<ui:composition 
+
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+    
+    <div id="layout-topbar">
+    	<div id="logo" class="Fleft">
+        	<a href="#"><h:graphicImage name="images/logo.svg" styleClass="Fleft" library="rio-layout" /></a>
+            <a id="mobile-menu-button" class="Fright ShowOnMobile ripplelink Unselectable ShadowEffect"><i class="icon-add186"></i></a>
+        </div>
+        
+        <a class="ripplelink WhiteBlue Fright ShowOnMobile" id="show-top-menu"><i class="icon-show8"></i></a>
+        
+        <ul id="top-menu" class="ShowOnDesktop">
+        	<li class="ShowOnMobile">
+        		<a class="ripplelink"><i class="icon-round58"></i> <span class="Txt">#{sessionMB.user.nome.split(" ")[0]}</span></a>
+        		<ul>
+                    <li><a href="#" class="menulink ripplelink" onclick="PF('senha').show();"><i class="icon-user158 Fs16"></i> Alterar senha</a></li>
+                    <li><a href="#" class="menulink ripplelink"><i class="icon-user158 Fs16"></i> Meus dados</a></li>
+                    <li><a href="#" class="menulink ripplelink"><i class="icon-settings49 Fs16"></i> Configurações</a></li>
+                    <li><a href="#{request.contextPath}/logoff" class="menulink ripplelink"><i class="icon-thermostat1 Fs16"></i> Logout</a></li>
+        		</ul>
+        	</li>
+            <li class="ShowOnDesktop">
+                <a class="ripplelink" style="width:auto; height: 45px; border-radius: 0;">
+                	<i class="icon-round58"></i>
+                	<span class="Fs16 FontRobotoLight" style="vertical-align: super;">
+                		#{sessionMB.user.nome} <i class="icon-downwards Fright Fs20"></i>
+                		<span class="Fs12 FontRobotoLight" style="display: block; line-height: 0;">PROCERGS / STD</span>
+                	</span>
+                </a>
+                <ul style="margin-left: 0;">
+                    <li><a href="#" class="menulink ripplelink" onclick="PF('senha').show();"><i class="fa fa-key Fs16"></i> Alterar senha</a></li>
+                    <li><a href="#" class="menulink ripplelink"><i class="icon-user158 Fs16"></i> Meus dados</a></li>
+                    <li><a href="#" class="menulink ripplelink"><i class="icon-settings49 Fs16"></i> Configurações</a></li>
+                    <li><a href="#{request.contextPath}/logoff" class="menulink ripplelink"><i class="icon-exit13 Fs16"></i> Logout</a></li>
+                </ul>
+            </li>
+            <li>
+                <a class="ripplelink" title="Pesquisar"><i class="icon-search100"></i> <span class="Txt">Pesquisar</span></a>
+                <ul>
+                    <li>
+                    	<input type="text" />
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="ripplelink" title="Meus Sistemas"><i class="icon-show6"></i> <span class="Txt">Meus Sistemas</span></a>
+                <ul>
+                    <li>
+                    	<a href="#{request.contextPath}/redir.xhtml?logon_url=http://secweb.des.intra.rs.gov.br/apm-arq4/index.xhtml" target="_blank">APM - Aplicação Modelo</a>
+                    </li>
+                    <li>
+						<h:link outcome="/redirectsoe.xhtml" value="APM Arqjava 3" target="_blank">
+							<f:param name="logon_url" value="http://sildes1109.des.intra.rs.gov.br:6080/apm-arq3/index.jsp" />
+						</h:link>
+                    </li>
+                    <li>
+						<h:link outcome="/redirectsoe.xhtml" value="APM .Net" target="_blank">
+							<f:param name="logon_url" value="http://apm-des.procergs.reders/apmweb/index.aspx" />
+						</h:link>
+                    </li>
+                </ul>
+            </li>
+            <li>
+                <a class="ripplelink" title="Notificações"><i class="icon-notifications1"></i> <span class="Txt">Notificações</span></a>
+                <ul>
+                    <li>
+                    	<a href="#">
+                    		<i class="icon-notifications Fs14"></i> Seu dissídio foi aprovado.
+							<br /><span class="time">14 minutos atrás</span>
+						</a>
+                    </li>
+                    <li>
+                    	<a href="#">
+                    		<i class="icon-notifications Fs14"></i> Você possui 1 processo para sua aprovação.
+							<br /><span class="time">2 horas atrás</span>
+						</a>
+                    </li>
+                    <li>
+                    	<a href="#">
+                    		<i class="icon-notifications Fs14"></i> O relatório solicitado está disponível para download.
+							<br /><span class="time">3 dias atrás</span>
+						</a>
+                    </li>
+                </ul>
+            </li>
+            <li>
+            	<a href="#{request.contextPath}/logoff" class="ripplelink" title="Sair do sistema" onclick="//PF('confirmLogoff').show();"><i class="icon-exit13"></i> <span class="Txt">Sair</span></a>
+            </li>
+        </ul>
+    </div>
+    
+</ui:composition>

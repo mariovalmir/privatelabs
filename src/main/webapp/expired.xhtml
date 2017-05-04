@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:o="http://omnifaces.org/"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/base.xhtml">
+
+	<ui:param name="bodyStyleClass" value="loginbodyorange" />
+
+	<ui:define name="content-base">
+        
+        <div class="Wid90 DispBlock MarAuto MarTopPerc10 TexAlCenter">
+            <div class="Wid33 MarAuto WidAutoOnMobile">
+                <div class="EmptyBox30"></div>
+                <div class="Card ShadowEffect">
+                    <div class="EmptyBox40"></div>
+                    <i class="icon-virtual2 Fs100 Orange"></i> 
+                    <div class="Wid100 OvHidden Fs30 Orange">Página Expirada</div>
+                    <div class="Wid100 OvHidden Fs20 BoldGray">A página solicitada não pôde ser recuperada. <br /><a href="#{requestScope['javax.servlet.error.request_uri']}">Clique aqui para recarregar página.</a></div>
+                    <div class="EmptyBox20"></div>
+                    <div class="Separator"></div>
+                    <div class="EmptyBox10"></div>
+                    <div class="Wid100"><p:button value="Voltar ao Dashboard" icon="fa fa-dashboard" styleClass="OrangeButton Wid60 Fs18 White RaisedButton" href="/dashboard.xhtml"/></div>
+                    <div class="EmptyBox20"></div>
+                </div>
+                <div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
+                    <i class="fa fa-copyright"></i>  PROCERGS <br/> Todos os direitos reservados.
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript">
+        $(function() {$('body').addClass('loginbodyorange');});
+        </script>
+    </ui:define>
+
+</ui:composition>

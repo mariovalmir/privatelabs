@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+	xmlns:of="http://omnifaces.org/functions"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/base.xhtml">
+
+	<ui:param name="bodyStyleClass" value="loginbodyred" />
+        
+	<ui:define name="content-base">
+        <div class="Wid90 DispBlock MarAuto MarTopPerc10 TexAlCenter">
+            <div class="Wid33 MarAuto WidAutoOnMobile">
+                <div class="EmptyBox30"></div>
+                <div class="Card ShadowEffect">
+                    <div class="EmptyBox40"></div>
+                    <i class="icon-comments Fs100 Red"></i>
+                    <div class="Wid100 OvHidden Fs30 Red">Ocorreu um erro inesperado !</div>
+                    <div class="Wid100 OvHidden Fs20 BoldGray">Por favor, contate a PROCERGS.</div>
+                    <div class="EmptyBox20"></div>
+                    <div class="Separator"></div>
+                    <div class="EmptyBox10"></div>
+                    <div class="Wid100"><p:button value="Voltar ao Dashboard" icon="fa fa-dashboard" styleClass="RedButton Wid60 Fs18 White RaisedButton" href="/dashboard.xhtml"/></div>
+                    <div class="EmptyBox10"></div>
+                    <div class="Wid100"><p:button value="Detalhes" icon="fa fa-dashboard" styleClass="RedButton Wid60 Fs18 White RaisedButton" onclick="PF('erroDlg').show(); return false;" rendered="#{not empty requestScope['javax.servlet.error.exception_type']}"/></div>
+                    <div class="EmptyBox20"></div>
+                </div>
+                <div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
+                	<i class="fa fa-copyright"></i>  PROCERGS <br/> Todos os direitos reservados.
+                    </div>
+            </div>
+        </div>
+        <p:dialog header="Detalhes do Erro" closeOnEscape="true" modal="true" responsive="true" width="60%" widgetVar="erroDlg" style="text-align: left;" resizable="false">
+            <b>Data/hora:</b> #{of:formatDate(now, 'dd/MM/yyyy HH:mm:ss')}<br />
+            <b>User agent:</b> #{header['user-agent']}<br />
+            <b>User IP:</b> #{empty header['x-forwarded-for'] ? request.remoteAddr : fn:split(header['x-forwarded-for'], ',')[0]}<br />
+            <b>Request URI:</b> <a href="#{requestScope['javax.servlet.error.request_uri']}">#{requestScope['javax.servlet.error.request_uri']}</a><br />
+            <b>Ajax request:</b> #{facesContext.partialViewContext.ajaxRequest ? 'Yes' : 'No'}<br />
+            <b>Status code:</b> #{requestScope['javax.servlet.error.status_code']}<br />
+            <b>Exception type:</b> #{requestScope['javax.servlet.error.exception_type']}<br />
+			<b>Mensagem:</b> #{requestScope['javax.servlet.error.message']}<br />
+			<b>StackTrace:</b>
+			<p:scrollPanel mode="native" style="height: 400px;">
+				<pre style="font-size: 12px;">#{of:printStackTrace(requestScope['javax.servlet.error.exception_stack_trace'])}</pre>
+			</p:scrollPanel>
+        </p:dialog>
+        
+        <script type="text/javascript">
+        $(function() {$('body').addClass('loginbodyred');});
+        </script>
+    </ui:define>
+
+</ui:composition>
