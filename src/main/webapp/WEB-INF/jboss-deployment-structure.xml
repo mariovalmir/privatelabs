@@ -1,10 +1,6 @@
 <jboss-deployment-structure>
 	<deployment>
 		<dependencies>
-			<module name="procergs.acr.soe" export="true" />
-			<module name="procergs.acr.util" export="true" />
-			<module name="procergs.acr.relatorio" export="true" slot="5.6.1" />
-			<module name="org.apache.httpcomponents" /> <!-- Soeproxy -->
 		</dependencies>
 	</deployment>
 </jboss-deployment-structure>

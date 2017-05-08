@@ -17,12 +17,6 @@
 		</resource-bundle>
 	</application>
 		
-	<factory>
-  		<exception-handler-factory>
-    		com.procergs.arqjava4.faces.CustomExceptionHandlerFactory
-  		</exception-handler-factory>
-	</factory>
-	
     <component>
         <component-type>org.primefaces.component.RioMenu</component-type>
         <component-class>org.primefaces.rio.component.menu.RioMenu</component-class>

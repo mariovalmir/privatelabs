@@ -56,16 +56,6 @@
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
 
-	<!-- Segurança do Arqjava4 -->
-	<filter>
-		<filter-name>SegurancaFilter</filter-name>
-		<filter-class>com.procergs.arqjava4.security.SegurancaFilter</filter-class>
-	</filter>
-	<filter-mapping>
-		<filter-name>SegurancaFilter</filter-name>
-		<servlet-name>Faces Servlet</servlet-name>
-	</filter-mapping>
-
 	<mime-mapping>
 		<extension>ttf</extension>
 		<mime-type>application/font-sfnt</mime-type>

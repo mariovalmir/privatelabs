@@ -27,11 +27,11 @@
 		</dependency>
 
 		<!-- Para utilizar SOEPROXY/SCA descomente a dependência abaixo -->
-<!-- 		<dependency> -->
-<!-- 			<groupId>com.procergs.ied</groupId> -->
-<!-- 			<artifactId>ied-soeproxy-client</artifactId> -->
-<!-- 			<version>4.0.2-arqjava1.0</version> -->
-<!-- 		</dependency> -->
+		<!-- <dependency> -->
+		<!-- <groupId>com.procergs.ied</groupId> -->
+		<!-- <artifactId>ied-soeproxy-client</artifactId> -->
+		<!-- <version>4.0.2-arqjava1.0</version> -->
+		<!-- </dependency> -->
 
 		<dependency>
 			<groupId>org.primefaces</groupId>
@@ -43,11 +43,11 @@
 			<artifactId>omnifaces</artifactId>
 			<version>2.6</version>
 		</dependency>
-        <dependency>
-            <groupId>commons-fileupload</groupId>
-            <artifactId>commons-fileupload</artifactId>
-            <version>1.2.1</version>
-        </dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
@@ -55,20 +55,27 @@
 			<version>1.6.1</version>
 			<scope>provided</scope>
 		</dependency>
-		
+
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.0.9.Final</version>
 			<scope>provided</scope>
 		</dependency>
-				
+
 		<!-- Monitoria -->
 		<dependency>
 			<groupId>net.bull.javamelody</groupId>
 			<artifactId>javamelody-core</artifactId>
 			<version>1.63.0</version>
 		</dependency>
+
+		<dependency>
+			<groupId>net.sf.jasperreports</groupId>
+			<artifactId>jasperreports</artifactId>
+			<version>3.7.5</version>
+		</dependency>
+
 
 	</dependencies>
 
@@ -125,28 +132,28 @@
 					</execution>
 				</executions>
 			</plugin>
-            <plugin>
-                <groupId>com.alexnederlof</groupId>
-                <artifactId>jasperreports-plugin</artifactId>
-                <version>1.9</version>
-                <executions>
-                    <execution>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>jasper</goal>
-                        </goals>
-                    </execution>
-                </executions>
-                <configuration>
-                    <compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
-                    <sourceDirectory>src/main/resources/reports</sourceDirectory>
-                    <outputDirectory>${project.build.directory}/classes/reports</outputDirectory>
-                    <outputFileExt>.jasper</outputFileExt>
-                    <xmlValidation>true</xmlValidation>
-                    <verbose>false</verbose>
-                    <numberOfThreads>4</numberOfThreads>
-                </configuration>
-            </plugin>
+			<plugin>
+				<groupId>com.alexnederlof</groupId>
+				<artifactId>jasperreports-plugin</artifactId>
+				<version>1.9</version>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>jasper</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<compiler>net.sf.jasperreports.engine.design.JRJdtCompiler</compiler>
+					<sourceDirectory>src/main/resources/reports</sourceDirectory>
+					<outputDirectory>${project.build.directory}/classes/reports</outputDirectory>
+					<outputFileExt>.jasper</outputFileExt>
+					<xmlValidation>true</xmlValidation>
+					<verbose>false</verbose>
+					<numberOfThreads>4</numberOfThreads>
+				</configuration>
+			</plugin>
 			<plugin>
 				<groupId>org.jboss.as.plugins</groupId>
 				<artifactId>jboss-as-maven-plugin</artifactId>
