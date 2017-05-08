@@ -9,9 +9,9 @@ import javax.inject.Named;
 
 import org.omnifaces.cdi.ViewScoped;
 
-import br.com.privatelabs.ed.ProdutoED;
-import br.com.privatelabs.produto.ProdutoRN;
-import br.com.privatelabs.util.FacesUtil;
+import com.procergs.privatelabs.ed.ProdutoED;
+import com.procergs.privatelabs.produto.ProdutoRN;
+import com.procergs.privatelabs.util.FacesUtil;
 
 @Named
 @ViewScoped

@@ -2,7 +2,7 @@ package com.procergs.privatelabs.login;
 
 import javax.ejb.Stateless;
 
-import br.com.privatelabs.ed.UsuarioED;
+import com.procergs.privatelabs.ed.UsuarioED;
 
 @Stateless
 public class UsuarioRN {

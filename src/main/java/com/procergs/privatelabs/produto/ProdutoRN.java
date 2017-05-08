@@ -5,7 +5,7 @@ import java.util.List;
 
 import javax.ejb.Stateless;
 
-import br.com.privatelabs.ed.ProdutoED;
+import com.procergs.privatelabs.ed.ProdutoED;
 
 @Stateless
 public class ProdutoRN {

@@ -9,9 +9,10 @@ import javax.faces.context.ExternalContext;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
-import br.com.privatelabs.ed.UsuarioED;
-import br.com.privatelabs.login.UsuarioRN;
-import br.com.privatelabs.util.FacesUtil;
+import com.procergs.privatelabs.ed.UsuarioED;
+import com.procergs.privatelabs.login.UsuarioRN;
+import com.procergs.privatelabs.util.FacesUtil;
+
 
 @ManagedBean
 public class LoginMB implements Serializable {
