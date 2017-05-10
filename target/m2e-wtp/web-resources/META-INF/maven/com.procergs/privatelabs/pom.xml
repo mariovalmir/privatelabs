@@ -26,13 +26,6 @@
 			<scope>provided</scope>
 		</dependency>
 
-		<!-- Para utilizar SOEPROXY/SCA descomente a dependência abaixo -->
-		<!-- <dependency> -->
-		<!-- <groupId>com.procergs.ied</groupId> -->
-		<!-- <artifactId>ied-soeproxy-client</artifactId> -->
-		<!-- <version>4.0.2-arqjava1.0</version> -->
-		<!-- </dependency> -->
-
 		<dependency>
 			<groupId>org.primefaces</groupId>
 			<artifactId>primefaces</artifactId>
@@ -60,23 +53,13 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-core</artifactId>
 			<version>5.0.9.Final</version>
-			<scope>provided</scope>
 		</dependency>
-
-		<!-- Monitoria -->
-		<dependency>
-			<groupId>net.bull.javamelody</groupId>
-			<artifactId>javamelody-core</artifactId>
-			<version>1.63.0</version>
-		</dependency>
-
+		
 		<dependency>
 			<groupId>net.sf.jasperreports</groupId>
 			<artifactId>jasperreports</artifactId>
 			<version>3.7.5</version>
 		</dependency>
-
-
 	</dependencies>
 
 	<build>

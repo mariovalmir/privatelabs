@@ -1,326 +1,62 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:o="http://omnifaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:p="http://primefaces.org/ui"
+	xmlns:o="http://omnifaces.org/ui" xmlns:c="http://java.sun.com/jsp/jstl/core"
 	xmlns:ui="http://java.sun.com/jsf/facelets">
-	<h:head>
-		<f:facet name="first">
-			<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-			<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-			<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-			<meta name="apple-mobile-web-app-capable" content="yes" />
-			<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-		</f:facet>
-		<title>#{msg['label.nome-sistema']}</title>
-		<h:outputScript name="js/ripple-effect.js" library="rio-layout" />
-		<h:outputScript name="js/perfect-scrollbar.js" library="rio-layout" />
-		<h:outputScript name="js/layout.js" library="rio-layout" />
-		<h:outputScript name="js/applib.js" library="rio-layout" />
+<h:head>
+	<f:facet name="first">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta name="viewport"
+			content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
 		<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
-	</h:head>
-	<h:body styleClass="loginbodyblue">
-		<f:metadata>
-			<o:enableRestorableView />
-			<f:viewParam name="page" value="#{logonFormMB.page}" />
-		</f:metadata>
-	
-		<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
-			<div class="Wid33 MarAuto WidAutoOnMobile">
-				<h:graphicImage name="images/logo.svg" library="rio-layout" style="width:40%; max-width:200px;" title="#{buildVersion} - #{buildTimestamp}" />
+	</f:facet>
+	<title>#{msg['label.nome-sistema']}</title>
+	<h:outputScript name="js/ripple-effect.js" library="rio-layout" />
+	<h:outputScript name="js/perfect-scrollbar.js" library="rio-layout" />
+	<h:outputScript name="js/layout.js" library="rio-layout" />
+	<h:outputScript name="js/applib.js" library="rio-layout" />
+	<link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+</h:head>
+<h:body styleClass="loginbodyblue">
+
+	<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
+		<div class="Wid33 MarAuto WidAutoOnMobile">
+			<h:graphicImage name="images/logo-private.jpg" library="rio-layout" style="width:40%; max-width:200px;"/>
+			<div class="EmptyBox30"></div>
+			<div class="Card ShadowEffect">
+				<div class="EmptyBox20"></div>
+				<div class="Wid100 OvHidden BigTopic Fs30">
+					<i class="icon-users Fs36"></i> Identifique-se para acessar a aplicação
+				</div>
+				<div class="EmptyBox20"></div>
+				<p:tooltip />
+				<h:form style="margin:auto;">
+					<p:messages id="messages" showDetail="true" sticky="true" autoUpdate="true" />
+					<div id="logon-logo-topo"></div>
+					<p:panel header="Login">
+						<p:panelGrid columns="2">
+							<p:outputLabel for="username" value="Usuário: " />
+							<p:inputText id="username" value="#{loginMB.ed.usuario}" />
+							<p:outputLabel for="password" value="Senha: " />
+							<p:password id="password" value="#{loginMB.ed.senha}" />
+							<p:outputLabel value="" />
+							<p:commandButton id="login" value="Ok" process="@form" update="@form" action="#{loginMB.login()}" />
+						</p:panelGrid>
+					</p:panel>
+				</h:form>
 				<div class="EmptyBox30"></div>
-				<div class="Card ShadowEffect">
-					<div class="EmptyBox20"></div>
-					<div class="Wid100 OvHidden BigTopic Fs30">
-						<i class="icon-users Fs36"></i> Identifique-se para acessar a aplicação
-					</div>
-					<div class="EmptyBox20"></div>
-					<p:tooltip />
-					<p:tabView id="tabview" widgetVar="tabs">
-						<p:tab id="organizacao" title="Organização" rendered="#{applicationProperties.logonAbaOrganizacao}">
-							<h:form id="formOrg">
-								<h:inputHidden value="#{logonFormMB.page}" />
-								<div class="EmptyBox20"></div>
-								<div class="Wid100">
-									<p:messages showDetail="true" showSummary="false" globalOnly="true" closable="true" />
-								</div>
-								<div class="Wid100">
-									<p:inputText id="organizacao" placeholder="Organização" styleClass="Wid80 TexAlCenter" value="#{logonFormMB.ed.organizacao}" required="true" />
-									<p:message for="organizacao" display="tooltip" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div class="Wid100">
-									<p:inputText id="matricula" placeholder="Matrícula" styleClass="Wid80 TexAlCenter" value="#{logonFormMB.ed.matricula}" required="true" validatorMessage="#{msg['constraints.number.invalid']}">
-										<f:validateRegex pattern="[0-9]*" />
-									</p:inputText>
-									<p:message for="matricula" display="tooltip" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div class="Wid100">
-									<p:inputText id="senha" type="password" placeholder="Senha" styleClass="Wid80 TexAlCenter" value="#{logonFormMB.ed.senha}" required="true" />
-									<p:message for="senha" display="tooltip" />
-								</div>
-								<c:if test="#{applicationProperties.logonMostraCaptcha}">
-									<div class="Wid100">
-											<div id="capOrg" style="margin-top: 20px; display: inline-block;"></div>
-									</div>
-									<div class="EmptyBox10"></div>
-								</c:if>
-								<c:if test="#{not applicationProperties.logonMostraCaptcha}">
-									<div class="EmptyBox30"></div>
-								</c:if>
-								<div class="Wid100">
-									<p:commandButton value="Entrar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton"  action="#{logonFormMB.logonOrganizacao(true)}" process="@form" update="@form" oncomplete="renderCaptchaOrg()" />
-								</div>
-								<div class="EmptyBox5"></div>
-								<div class="Wid100">
-									<p:button value="Esqueceu sua senha?" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" onclick="PF('resetPassword').show(); return false;" rendered="#{not empty logonFormMB.urlEsqueciSenha}" />
-								</div>
-							</h:form>
-						</p:tab>
-						<p:tab title="E-mail" id="email" rendered="#{applicationProperties.logonAbaEmail}">
-							<h:form id="formEmail">
-								<h:inputHidden value="#{logonFormMB.page}" />
-								<div class="EmptyBox20"></div>
-								<div class="Wid100">
-									<p:messages showDetail="true" showSummary="false" globalOnly="true" closable="true" />
-								</div>
-								<div class="Wid100">
-									<p:inputText id="email" placeholder="E-mail" styleClass="Wid80 TexAlCenter" value="#{logonFormMB.ed.email}" required="true" validatorMessage="#{msg['constraints.email.invalid']}">
-										<f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
-									</p:inputText>
-									<p:message for="email" display="tooltip" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div class="Wid100">
-									<p:inputText id="senhaEmail" type="password" placeholder="Senha" styleClass="Wid80 TexAlCenter" value="#{logonFormMB.ed.senha}" required="true" />
-									<p:message for="senhaEmail" display="tooltip" />
-								</div>
-								<c:if test="#{applicationProperties.logonMostraCaptcha}">
-									<div class="Wid100">
-											<div id="capEmail" style="margin-top: 20px; display: inline-block;"></div>
-									</div>
-									<div class="EmptyBox10"></div>
-								</c:if>
-								<c:if test="#{not applicationProperties.logonMostraCaptcha}">
-									<div class="EmptyBox30"></div>
-								</c:if>
-								<div class="Wid100">
-									<p:commandButton value="Entrar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton"  action="#{logonFormMB.logonEmail(true)}" process="@form" update="@form" oncomplete="renderCaptchaEmail()" />
-								</div>
-								<div class="EmptyBox5"></div>
-								<div class="Wid100">
-									<p:button value="Esqueceu sua senha?" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" onclick="PF('resetPassword').show(); return false;" rendered="#{not empty logonFormMB.urlEsqueciSenha}" />
-								</div>
-							</h:form>
-						</p:tab>
-						<p:tab id="documento" title="Documento" rendered="#{applicationProperties.logonAbaDocumento}">
-							<h:form id="formDoc">
-							<h:inputHidden value="#{logonFormMB.page}" />
-				            <div class="ui-fluid" style="margin: 0 30px;">
-								<div class="EmptyBox20"></div>
-								<div>
-									<p:messages showDetail="true" showSummary="false" globalOnly="true" closable="true" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div>
-									<p:selectOneMenu id="tipoDocumento" required="true" value="#{logonFormMB.ed.tipoDocumento}">
-										<f:selectItem itemValue="" itemLabel="[Tipo de Documento]" noSelectionOption="true" />
-										<f:selectItems value="#{logonFormMB.listaTipoDocumento}" />
-									</p:selectOneMenu>
-									<p:message for="tipoDocumento" display="tooltip" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div>
-									<p:inputText id="documento" placeholder="Número documento" styleClass="TexAlCenter" required="true" value="#{logonFormMB.ed.documento}" />
-									<p:message for="documento" display="tooltip" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div>
-									<p:password id="senhaDocumento" placeholder="Senha" styleClass="TexAlCenter" required="true" value="#{logonFormMB.ed.senha}" />
-									<p:message for="senhaDocumento" display="tooltip" />
-								</div>
-								<div class="EmptyBox10"></div>
-								<div>
-									<p:inputText id="documentoOrganizacao" placeholder="Organização" styleClass="TexAlCenter" maxlength="#{applicationProperties.logonOrganizacaoMaxlength}" value="#{logonFormMB.ed.documentoOrganizacao}" />
-									<p:message for="documentoOrganizacao" display="tooltip" />
-								</div>
-							</div>
-							<c:if test="#{applicationProperties.logonMostraCaptcha}">
-								<div class="Wid100">
-										<div id="capDoc" style="margin-top: 20px; display: inline-block;"></div>
-								</div>
-								<div class="EmptyBox10"></div>
-							</c:if>
-							<c:if test="#{not applicationProperties.logonMostraCaptcha}">
-								<div class="EmptyBox30"></div>
-							</c:if>
-							<div class="Wid100">
-								<p:commandButton value="Entrar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton"  action="#{logonFormMB.logonDocumento(true)}" process="@form" update="@form :documentoDuplicado" oncomplete="renderCaptchaDoc()" />
-							</div>
-							<div class="EmptyBox5"></div>
-							<div class="Wid100">
-								<p:button value="Esqueceu sua senha?" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" onclick="PF('resetPassword').show(); return false;" rendered="#{not empty logonFormMB.urlEsqueciSenha}" />
-							</div>
-							</h:form>
-						</p:tab>
-						<p:tab title="Certificado Digital" rendered="#{applicationProperties.logonAbaCertificado}">
-						</p:tab>
-					</p:tabView>
-					<div class="EmptyBox30"></div>
-				</div>
-				<div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
-					<i class="fa fa-copyright"></i> PROCERGS <br /> Todos os direitos reservados.
-				</div>
 			</div>
 		</div>
-	
-		<p:dialog id="documentoDuplicado" widgetVar="ddWidget" modal="true" appendTo="@(body)" dynamic="true" responsive="true"
-			resizable="false" closable="false" rendered="#{applicationProperties.logonAbaDocumento}" showHeader="false"
-			visible="#{logonFormMB.documentoDuplicado and !facesContext.validationFailed and logonFormMB.ed.logonPor == 'documento'}">
-			<h:form id="formDD">
-				<div class="Wid100 DispBlock MarAuto MarTopPerc5 TexAlCenter">
-					<div class="Wid100 MarAuto WidAutoOnMobile">
-						<div class="Card ShadowEffect">
-							<div class="Wid100 OvHidden Fs18">
-								<i class="icon-users Fs40"></i> Este documento está associado a mais de um usuário.<br />Escolha a organização desejada.
-							</div>
-							<div class="EmptyBox20"></div>
-							<div class="Wid100">
-								<p:messages autoUpdate="true" showDetail="true" showSummary="false" closable="true" />
-							</div>
-							<div class="EmptyBox20"></div>
-							<div class="Wid100">
-								<h:outputText id="documento" value="Documento - #{logonFormMB.ed.tipoDocumento} - #{logonFormMB.ed.documento}" />
-							</div>
-							<div class="EmptyBox10"></div>
-							<div class="Wid100">
-								<p:selectOneMenu id="organizacao" required="true" value="#{logonFormMB.ed.documentoOrganizacao}" styleClass="Wid70">
-									<f:selectItems var="o" itemValue="#{o}" value="#{logonFormMB.listaOrganizacao}" />
-								</p:selectOneMenu>
-							</div>
-							<div class="EmptyBox10"></div>
-							<div class="Wid100">
-								<p:password id="senha" required="true" value="#{logonFormMB.ed.senha}" styleClass="Wid80 TexAlCenter" placeholder="Senha" />
-							</div>
-							<div class="EmptyBox30"></div>
-							<div class="Wid100">
-								<p:commandButton value="Confirmar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton" action="#{logonFormMB.logonDocumento(false)}" update="@form" oncomplete="if (!args.validationFailed) PF('ddWidget').hide();" />
-							</div>
-							<div class="EmptyBox10"></div>
-							<div class="Wid100">
-								<p:commandButton value="Cancelar" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" action="#{logonFormMB.cancelaLogonDocumento}" immediate="true" />
-							</div>
-							<div class="EmptyBox10"></div>
-						</div>
-					</div>
-				</div>
-			</h:form>
-		</p:dialog>
-		
-		<p:dialog id="prazoSenhaExpirado" widgetVar="prazoSenhaExpirado" width="900px" height="450px" modal="true" appendTo="@(body)" resizable="false" 
-				header="Prazo da senha expirou. Informe uma nova senha.">
-			<h:form>
-				<div class="Wid90 DispBlock MarAuto MarTopPerc5 TexAlCenter">
-					<div class="Wid100 MarAuto WidAutoOnMobile">
-						<div class="Card ShadowEffect">
-							<div class="EmptyBox20"></div>
-							<div class="Wid100">
-								<p:messages autoUpdate="true" showDetail="true" showSummary="false" closable="true" />
-							</div>
-							<div class="Wid100">
-								<p:password id="senhaAtual" value="#{logonFormMB.ed.senhaAtual}" label="Senha atual" required="true" placeholder="Senha atual"
-									styleClass="Wid80 TexAlCenter Fs18" />
-							</div>
-							<div class="EmptyBox10"></div>
-							<div class="Wid100" style="text-align: center;">
-						   		<p:password id="novaSenha" value="#{logonFormMB.ed.novaSenha}" match="novaSenhaConfirma" label="Nova senha" required="true" 
-						   			validatorMessage="Confirmação da senha não confere." placeholder="Nova senha"
-						   			feedback="true" weakLabel="Fraca" goodLabel="Média" strongLabel="Forte" promptLabel="Digite a nova senha" inline="false"
-						   			styleClass="Wid80 TexAlCenter Fs18"  />
-							</div>
-							<div class="EmptyBox10"></div>
-							<div class="Wid100">
-						   		<p:password id="novaSenhaConfirma" value="#{logonFormMB.ed.novaSenhaConfirma}" label="Confirme nova senha" required="true" 
-						   			validatorMessage="Confirmação da senha não confere."  placeholder="Confirme nova senha"
-						   			feedback="true" weakLabel="Fraca" goodLabel="Média" strongLabel="Forte" promptLabel="Repita a nova senha" inline="false" 
-						   			styleClass="Wid80 TexAlCenter Fs18" />
-							</div>
-							<div class="EmptyBox20"></div>
-							<div class="Wid100">
-								<p:commandButton value="Confirmar" icon="fa fa-sign-in" styleClass="Wid60 Fs18 White RaisedButton" action="#{logonFormMB.alteraSenhaLogon}" process="@form" update="@form" />
-							</div>
-							<div class="EmptyBox5"></div>
-							<div class="Wid100">
-								<p:commandButton value="Cancelar" icon="fa fa-lock" styleClass="GoldenButton Wid60 Fs18 White RaisedButton" action="#{logonFormMB.cancelaAlteraSenha()}" immediate="true" ajax="false" />
-							</div>
-							<div class="EmptyBox30"></div>
-						</div>
-						<div class="Wid100 TexAlCenter MarTop20 Fs14 FontRobotoRegular WhiteBlue">
-							<i class="fa fa-copyright"></i>  PROCERGS <br/> Todos os direitos reservados.
-						</div>
-					</div>
-				</div>
-			</h:form>
-		</p:dialog>
-		
-		<p:dialog widgetVar="resetPassword" modal="true" width="900px" height="450px" closable="true" closeOnEscape="true" resizable="false">
-			<iframe src="#{logonFormMB.urlEsqueciSenha}" width="99%" height="98%" />
-		</p:dialog>
+	</div>
 
-		<p:confirmDialog widgetVar="sessaoExpirada" header="#{msg['logon.header.sessao.expirada']}" appendTo="@(body)" width="330px"
-			visible="#{logonFormMB.expirado}" message="#{msg['logon.sessao.expirada']}">
-			<h:form prependId="false">
-				<p:button tabindex="0" id="sessaoExpiradaOk" value="#{msg['label.ok']}" onclick="PF('sessaoExpirada').hide(); return false;" />
-			</h:form>
-		</p:confirmDialog>
-		<p:confirmDialog widgetVar="sessaoEncerrada" header="#{msg['logon.header.sessao.expirada']}" appendTo="@(body)" width="340px"  
-				visible="#{logonFormMB.encerrado}" message="Sua sessão foi encerrada por outro logon.">
-			<h:form prependId="false">
-				<p:button tabindex="0" id="sessaoEncerradaOk" value="#{msg['label.ok']}" onclick="PF('sessaoEncerrada').hide(); return false;" />
-			</h:form>
-		</p:confirmDialog>
-		<p:dialog widgetVar="sessaoEmUso" header="Sessão em uso" width="450px" modal="true" appendTo="@(body)" resizable="false" 
-				onShow="setTimeout(function() {document.getElementById('sessaoEmUsoOk').focus()} , 100);">
-			Sua matrícula está em uso ou foi usada e a sessão foi encerrada anormalmente. <br />Se estiver em uso nesse momento, será encerrada.
-			<div style="border-top: 1px inset #aaa !important; padding: 5px 0; margin-top: 5px;">
-				<p:button id="sessaoEmUsoOk" value="#{msg['label.ok']}" href="#{empty logonFormMB.pageRelative ? 'index.xhtml' : logonFormMB.pageRelative}" />
-			</div>
-		</p:dialog>
-
-		<script type="text/javascript">
-		$('a[href$="#tabview:#{logonFormMB.selectedTab}"]').click();
-		$('#{logonFormMB.focus}').focus();
-		function renderCaptchaOrg() {
-			if ($('#capOrg').length > 0) grecaptcha.render('capOrg', {'sitekey' : '#{logonFormMB.publicKey}'});
-		}
-		function renderCaptchaEmail() {
-			if ($('#capEmail').length > 0) grecaptcha.render('capEmail', {'sitekey' : '#{logonFormMB.publicKey}'});
-		}
-		function renderCaptchaDoc() {
-			if ($('#capDoc').length > 0) grecaptcha.render('capDoc', {'sitekey' : '#{logonFormMB.publicKey}'});
-		}
-		<c:if test="#{applicationProperties.logonMostraCaptcha}">
-		var initCaptcha = function() {
-			<c:if test="#{applicationProperties.logonAbaOrganizacao}">
-			renderCaptchaOrg();
-			</c:if>
-			<c:if test="#{applicationProperties.logonAbaEmail}">
-			renderCaptchaEmail();
-			</c:if>
-			<c:if test="#{applicationProperties.logonAbaDocumento}">
-			renderCaptchaDoc();
-			</c:if>
-		};
-		</c:if>
-		</script>
-<c:if test="#{applicationProperties.logonMostraCaptcha}">
-		<script type="text/javascript" src="https://www.google.com/recaptcha/api.js?onload=initCaptcha&amp;render=explicit&amp;hl=pt" async="async" defer="defer"></script>
-</c:if>
-		<h:outputStylesheet name="css/core-layout.css" library="rio-layout" />
-		<h:outputStylesheet name="css/animate.css" library="rio-layout" />
-		<h:outputStylesheet name="css/rio-font.css" library="rio-layout" />
-		<h:outputStylesheet name="css/ripple-effect.css" library="rio-layout" />
-		<h:outputStylesheet name="css/font-awesome.css" library="rio-layout" />
-		<h:outputStylesheet name="css/rio-layout.css" library="rio-layout" />
-	</h:body>
+	<h:outputStylesheet name="css/core-layout.css" library="rio-layout" />
+	<h:outputStylesheet name="css/animate.css" library="rio-layout" />
+	<h:outputStylesheet name="css/rio-font.css" library="rio-layout" />
+	<h:outputStylesheet name="css/ripple-effect.css" library="rio-layout" />
+	<h:outputStylesheet name="css/font-awesome.css" library="rio-layout" />
+	<h:outputStylesheet name="css/rio-layout.css" library="rio-layout" />
+</h:body>
 </html>

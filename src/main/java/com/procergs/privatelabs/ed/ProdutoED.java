@@ -1,29 +1,16 @@
 package com.procergs.privatelabs.ed;
 
-public class ProdutoED {
+import com.procergs.privatelabs.infra.AppED;
 
+public class ProdutoED extends AppED<Long>{
+
+	private static final long serialVersionUID = 1L;
 	
-	private String substancia;
-	private Integer quantidade;
+	private Long idProduto;
+	private String nome;
 	private Integer concentracao;
-	private Double valor;
+	private Double valorCusto;
 	private String referencia;
-
-	public String getSubstancia() {
-		return substancia;
-	}
-
-	public void setSubstancia(String substancia) {
-		this.substancia = substancia;
-	}
-
-	public Integer getQuantidade() {
-		return quantidade;
-	}
-
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
 
 	public Integer getConcentracao() {
 		return concentracao;
@@ -33,19 +20,40 @@ public class ProdutoED {
 		this.concentracao = concentracao;
 	}
 
-	public Double getValor() {
-		return valor;
-	}
-
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
-
 	public String getReferencia() {
 		return referencia;
 	}
 
 	public void setReferencia(String referencia) {
 		this.referencia = referencia;
+	}
+
+	@Override
+	public Long getId() {
+		return idProduto;
+	}
+
+	public Long getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Double getValorCusto() {
+		return valorCusto;
+	}
+
+	public void setValorCusto(Double valorCusto) {
+		this.valorCusto = valorCusto;
 	}
 }
