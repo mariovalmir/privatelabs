@@ -5,8 +5,8 @@
     http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd"
 	version="1.0">
 
-	<persistence-unit name="VEI" transaction-type="JTA">
-		<jta-data-source>java:jboss/datasources/ApmDS</jta-data-source>
+	<persistence-unit name="PrivateLabsDS" transaction-type="JTA">
+		<jta-data-source>java:jboss/datasources/PrivateLabsDS</jta-data-source>
 		<properties>
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />
