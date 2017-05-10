@@ -1,22 +1,13 @@
 package com.procergs.privatelabs.ed;
 
 import javax.persistence.Column;
-import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 import com.procergs.privatelabs.infra.AppED;
 
-@Entity
-@Table(name = "APM_CURSO")
-@NamedQueries(value = { 
-	@NamedQuery(name = "CursoED.consulta", query = "select c from CursoED c where c.nroIntCur = :id")
-})
 public class CursoED extends AppED<Integer> {
 
 	private static final long serialVersionUID = 1L;

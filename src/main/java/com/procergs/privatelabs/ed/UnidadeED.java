@@ -1,9 +1,18 @@
 package com.procergs.privatelabs.ed;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="UNIDADE")
 public class UnidadeED {
 
-	
-	private Long idUnidade;
+    @Id
+    @Column(name = "ID_UNIDADE")
+    private Long idUnidade;
+    @Column
 	private String vendedor;
 
 	public Long getIdUnidade() {

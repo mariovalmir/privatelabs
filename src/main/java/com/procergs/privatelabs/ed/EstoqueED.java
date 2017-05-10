@@ -1,10 +1,22 @@
 package com.procergs.privatelabs.ed;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="ESTOQUE")
 public class EstoqueED {
 
+    @Id
+    @Column(name = "ID_ESTOQUE")
 	private Long idEstoque;
+    @Column(name = "ID_UNIDADE")
 	private Long idUnidade;
+    @Column(name = "ID_PRODUTO")
 	private Long idProduto;
+    @Column
 	private Integer quantidade;
 
 	public Long getIdEstoque() {

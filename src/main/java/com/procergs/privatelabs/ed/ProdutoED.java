@@ -1,51 +1,63 @@
 package com.procergs.privatelabs.ed;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "PRODUTO")
 public class ProdutoED {
 
-	
-	private String substancia;
-	private Integer quantidade;
-	private Integer concentracao;
-	private Double valor;
-	private String referencia;
+    @Id
+    @Column(name = "ID_PRODUTO")
+    private Long idProduto;
+    @Column
+    private String nome;
+    @Column
+    private Integer concentracao;
+    @Column(name = "VALOR_CUSTO")
+    private Double valorCusto;
+    @Column
+    private String referencia;
 
-	public String getSubstancia() {
-		return substancia;
-	}
+    public Integer getConcentracao() {
+        return concentracao;
+    }
 
-	public void setSubstancia(String substancia) {
-		this.substancia = substancia;
-	}
+    public void setConcentracao(Integer concentracao) {
+        this.concentracao = concentracao;
+    }
 
-	public Integer getQuantidade() {
-		return quantidade;
-	}
+    public String getReferencia() {
+        return referencia;
+    }
 
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
-	}
+    public void setReferencia(String referencia) {
+        this.referencia = referencia;
+    }
 
-	public Integer getConcentracao() {
-		return concentracao;
-	}
+    public Long getIdProduto() {
+        return idProduto;
+    }
 
-	public void setConcentracao(Integer concentracao) {
-		this.concentracao = concentracao;
-	}
+    public void setIdProduto(Long idProduto) {
+        this.idProduto = idProduto;
+    }
 
-	public Double getValor() {
-		return valor;
-	}
+    public String getNome() {
+        return nome;
+    }
 
-	public void setValor(Double valor) {
-		this.valor = valor;
-	}
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-	public String getReferencia() {
-		return referencia;
-	}
+    public Double getValorCusto() {
+        return valorCusto;
+    }
 
-	public void setReferencia(String referencia) {
-		this.referencia = referencia;
-	}
+    public void setValorCusto(Double valorCusto) {
+        this.valorCusto = valorCusto;
+    }
 }
