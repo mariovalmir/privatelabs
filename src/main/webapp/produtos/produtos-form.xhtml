@@ -1,0 +1,61 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	template="/WEB-INF/templates/layout-rio.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:messages id="messages" showDetail="true" sticky="true"/>
+			<p:panel id="filtros" header="Cadastro de produtos">
+				<p:separator />
+				<div class="ShowOnDesktop">
+					<p:commandButton value="#{msg['label.new']}" oncomplete="PF('dialogProdutos').show();" icon="fa fa-plus" />
+				</div>
+				<div class="ShowOnMobile">
+					<p:commandButton value="#{msg['label.new']}" oncomplete="PF('dialogProdutos').show();" icon="fa fa-plus" />
+				</div>
+				<p:dataTable var="produto" value="#{produtoFormMB.produtos}"
+					emptyMessage="Nenhum registro encontrado">
+					<p:column headerText="Nome" filterBy="#{produto.nome}" filterMatchMode="contains">
+						<h:outputText value="#{produto.nome}" />
+					</p:column>
+					<p:column headerText="Concentração">
+						<h:outputText value="#{produto.concentracao}" />
+					</p:column>
+					<p:column headerText="Referência">
+						<h:outputText value="#{produto.referencia}" />
+					</p:column>
+					<p:column headerText="Valor de Custo">
+						<h:outputText value="#{produto.valorCusto}" />
+					</p:column>
+				</p:dataTable>
+			</p:panel>
+		</h:form>
+		
+		<p:dialog id="produtos" header="Informar a Produto" widgetVar="dialogProdutos" modal="true" appendTo="@(Body)" responsive="true">
+			<p:ajax event="close" update=":filtros"/>	
+			<h:form id="formProdutos" prependId="false">
+			<p:messages id="messages2" showDetail="true" showSummary="false" closable="true" severity="info,error"/>
+				<p:panel>
+					<p:panelGrid columns="2">
+						<p:outputLabel for="nomeInc" value="Nome: " />
+						<p:inputText id="nomeInc" value="#{produtoFormMB.ed.nome}" size="30" maxlength="25" required="true" />
+						<p:outputLabel for="referenciaInc" value="Referência: " />
+						<p:inputText id="referenciaInc" value="#{produtoFormMB.ed.referencia}" size="30" maxlength="25" required="true"/>
+						<p:outputLabel for="concentracaoInc" value="Concentração: " />
+						<p:inputText id="concentracaoInc" value="#{produtoFormMB.ed.concentracao}" size="20" maxlength="15" required="true"/>
+						<p:outputLabel for="valorInc" value="Valor de Custo: " />
+						<p:inputNumber id="valorInc" value="#{produtoFormMB.ed.valorCusto}" size="20" maxlength="15" required="true" decimalSeparator="," thousandSeparator="."/>
+						
+					</p:panelGrid>
+					<f:facet name="footer">
+						<p:commandButton value="Cancelar" onclick="PF('dialogProdutos').hide();" immediate="true" type="button" icon="ui-icon-cancel" />
+						<p:commandButton value="Salvar" action="#{produtoFormMB.salvar()}" update="formProdutos :filtros" icon="ui-icon-check" onsuccess="PF('dialogProdutos').hide();"/>
+					</f:facet>
+				</p:panel>
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
