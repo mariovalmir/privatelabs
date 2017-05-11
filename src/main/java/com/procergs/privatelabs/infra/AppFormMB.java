@@ -2,6 +2,7 @@ package com.procergs.privatelabs.infra;
 
 import java.io.Serializable;
 
+import javax.annotation.PostConstruct;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 
@@ -19,7 +20,7 @@ public abstract class AppFormMB<ED extends AppED<PK>, PK> implements Serializabl
     MessageProvider provider;
 
     // Actions
-
+    @PostConstruct
     public void init() {
         // Não executar caso seja uma ajax-request
         if (FacesContext.getCurrentInstance().isPostback()) {

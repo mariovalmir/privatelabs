@@ -69,3 +69,4 @@ $RECYCLE.BIN/
 .settings/org.eclipse.wst.common.project.facet.core.prefs.xml
 target/classes/META-INF/persistence.xml
 target/m2e-wtp/web-resources/META-INF/maven/com.procergs/privatelabs/pom.properties
+/target

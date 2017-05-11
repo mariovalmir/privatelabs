@@ -21,14 +21,16 @@
 					<p:column headerText="Nome" filterBy="#{produto.nome}" filterMatchMode="contains">
 						<h:outputText value="#{produto.nome}" />
 					</p:column>
-					<p:column headerText="Concentração">
+					<p:column headerText="Concentração" styleClass="TexAlRight">
 						<h:outputText value="#{produto.concentracao}" />
 					</p:column>
-					<p:column headerText="Referência">
+					<p:column headerText="Referência" styleClass="TexAlCenter">
 						<h:outputText value="#{produto.referencia}" />
 					</p:column>
-					<p:column headerText="Valor de Custo">
-						<h:outputText value="#{produto.valorCusto}" />
+					<p:column headerText="Valor de Custo" styleClass="TexAlRight">
+						<h:outputText value="#{produto.valorCusto}">
+							<f:convertNumber currencySymbol="R$" type="currency"/>
+						</h:outputText>
 					</p:column>
 				</p:dataTable>
 			</p:panel>
@@ -48,11 +50,10 @@
 						<p:inputText id="concentracaoInc" value="#{produtoFormMB.ed.concentracao}" size="20" maxlength="15" required="true"/>
 						<p:outputLabel for="valorInc" value="Valor de Custo: " />
 						<p:inputNumber id="valorInc" value="#{produtoFormMB.ed.valorCusto}" size="20" maxlength="15" required="true" decimalSeparator="," thousandSeparator="."/>
-						
 					</p:panelGrid>
 					<f:facet name="footer">
-						<p:commandButton value="Cancelar" onclick="PF('dialogProdutos').hide();" immediate="true" type="button" icon="ui-icon-cancel" />
-						<p:commandButton value="Salvar" action="#{produtoFormMB.salva()}" update="formProdutos :filtros" icon="ui-icon-check" onsuccess="PF('dialogProdutos').hide();"/>
+						<p:commandButton value="#{msg['label.cancel']}" onclick="PF('dialogProdutos').hide();" immediate="true" type="button" icon="ui-icon-cancel" />
+						<p:commandButton value="#{msg['label.save']}" action="#{produtoFormMB.salva()}" update="formProdutos" icon="ui-icon-check"/>
 					</f:facet>
 				</p:panel>
 			</h:form>
