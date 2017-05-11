@@ -1,25 +1,37 @@
 package com.procergs.privatelabs.produto;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import javax.ejb.Init;
 import javax.ejb.Stateless;
+import javax.inject.Inject;
 
 import com.procergs.privatelabs.ed.ProdutoED;
+import com.procergs.privatelabs.infra.AppRN;
 
 @Stateless
-public class ProdutoRN {
+public class ProdutoRN  extends AppRN<ProdutoED, Long>{
+	private static final long serialVersionUID = 1L;
 
-	private static List<ProdutoED> produtos = new ArrayList<>();
+	@Inject
+	private ProdutoBD bd;
 	
-	public List<ProdutoED> listar(ProdutoED ed) {
-		return produtos;
+	@Init
+	public void init() {
+		super.setBD(bd);
+	}
+	
+	
+	@Override
+	public List<ProdutoED> lista(ProdutoED ped) {
+		return bd.lista(ped);
 	}
 //			p -> p.getSubstancia().equals(ed.getSubstancia())).findFirst().get();
 //	return produtos.stream().filter(
 	
-	public void incluir(ProdutoED ed) {
-		produtos.add(ed);
+	@Override
+	public ProdutoED inclui(ProdutoED ed) {
+		return bd.inclui(ed);
 	}
 
 }

@@ -7,6 +7,12 @@
 	
 	<persistence-unit name="PrivateLabsDS" transaction-type="JTA">
 		<jta-data-source>java:jboss/datasources/PrivateLabsDS</jta-data-source>
+		<class>com.procergs.privatelabs.ed.EstoqueED</class>
+		<class>com.procergs.privatelabs.ed.ItemVendaED</class>
+		<class>com.procergs.privatelabs.ed.ProdutoED</class>
+		<class>com.procergs.privatelabs.ed.UnidadeED</class>
+		<class>com.procergs.privatelabs.ed.UsuarioED</class>
+		<class>com.procergs.privatelabs.ed.VendaED</class>
 		<properties>
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="false" />

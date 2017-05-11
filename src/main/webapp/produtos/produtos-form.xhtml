@@ -52,7 +52,7 @@
 					</p:panelGrid>
 					<f:facet name="footer">
 						<p:commandButton value="Cancelar" onclick="PF('dialogProdutos').hide();" immediate="true" type="button" icon="ui-icon-cancel" />
-						<p:commandButton value="Salvar" action="#{produtoFormMB.salvar()}" update="formProdutos :filtros" icon="ui-icon-check" onsuccess="PF('dialogProdutos').hide();"/>
+						<p:commandButton value="Salvar" action="#{produtoFormMB.salva()}" update="formProdutos :filtros" icon="ui-icon-check" onsuccess="PF('dialogProdutos').hide();"/>
 					</f:facet>
 				</p:panel>
 			</h:form>

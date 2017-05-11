@@ -2,14 +2,23 @@ package com.procergs.privatelabs.ed;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.procergs.privatelabs.infra.AppED;
+
 @Entity
 @Table(name = "PRODUTO")
-public class ProdutoED {
+public class ProdutoED  extends AppED<Long>{
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	@Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name = "ID_PRODUTO")
     private Long idProduto;
     @Column
@@ -60,4 +69,9 @@ public class ProdutoED {
     public void setValorCusto(Double valorCusto) {
         this.valorCusto = valorCusto;
     }
+
+	@Override
+	public Long getId() {
+		return idProduto;
+	}
 }
