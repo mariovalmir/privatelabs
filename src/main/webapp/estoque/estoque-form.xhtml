@@ -1,0 +1,22 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/layout-rio.xhtml">
+
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:messages id="messages" showDetail="true" sticky="true" />
+			<p:panel id="filtros" header="Cadastro de estoque">
+				<p:separator />
+				<p:outputLabel for="console" value="Basic:" />
+                 <p:selectOneMenu id="console" value="#{estoqueFormMB.unidade}">
+                     <f:selectItem itemLabel="Nenhum" itemValue="#{null}" />
+                     <f:selectItems value="#{estoqueFormMB.unidades}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.regiao}"/>
+                 </p:selectOneMenu>
+				<p:pickList id="pickList" value="#{estoqueFormMB.produtos}" var="produto" itemLabel="#{produto.nome}" itemValue="#{produto}" />
+				<p:selectOneMenu />
+				
+				<p:commandButton value="#{msg['label.next']}" action="estoqueFormMB." icon="fa fa-plus" />
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

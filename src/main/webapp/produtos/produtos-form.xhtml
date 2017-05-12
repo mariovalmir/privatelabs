@@ -10,12 +10,7 @@
 			<p:messages id="messages" showDetail="true" sticky="true"/>
 			<p:panel id="filtros" header="Cadastro de produtos">
 				<p:separator />
-				<div class="ShowOnDesktop">
-					<p:commandButton value="Novo" oncomplete="PF('dialogProdutos').show();" icon="fa fa-plus" />
-				</div>
-				<div class="ShowOnMobile">
-					<p:commandButton value="#{msg['label.new']}" oncomplete="PF('dialogProdutos').show();" icon="fa fa-plus" />
-				</div>
+				<p:commandButton value="#{msg['label.new']}" oncomplete="PF('dialogProdutos').show();" icon="fa fa-plus" />
 				<p:dataTable var="produto" value="#{produtoFormMB.produtos}"
 					emptyMessage="Nenhum registro encontrado">
 					<p:column headerText="Nome" filterBy="#{produto.nome}" filterMatchMode="contains">
