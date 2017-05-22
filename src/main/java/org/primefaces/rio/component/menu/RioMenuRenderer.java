@@ -5,10 +5,12 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+
 import javax.faces.FacesException;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.context.ResponseWriter;
+
 import org.primefaces.component.api.AjaxSource;
 import org.primefaces.component.api.UIOutcomeTarget;
 import org.primefaces.component.menu.AbstractMenu;
@@ -22,13 +24,14 @@ import org.primefaces.util.WidgetBuilder;
 
 public class RioMenuRenderer extends BaseMenuRenderer {
 
-    @Override
+    @SuppressWarnings("unchecked")
+	@Override
     protected void encodeMarkup(FacesContext context, AbstractMenu abstractMenu) throws IOException {
         RioMenu menu = (RioMenu) abstractMenu;
         ResponseWriter writer = context.getResponseWriter();
         String style = menu.getStyle();
         String styleClass = menu.getStyleClass();
-        styleClass = (styleClass == null) ? "layout-menu rio-menu" : "layout-menu rio-menu " + styleClass;
+        styleClass = styleClass == null ? "layout-menu rio-menu" : "layout-menu rio-menu " + styleClass;
         String clientId = menu.getClientId(context);
         
         writer.startElement("ul", menu);
@@ -59,7 +62,7 @@ public class RioMenuRenderer extends BaseMenuRenderer {
         if(element.isRendered()) {
             if(element instanceof MenuItem) {
                 MenuItem menuItem = (MenuItem) element;
-                String menuItemClientId = (menuItem instanceof UIComponent) ? menuItem.getClientId() : menu.getClientId(context) + "_" + menuItem.getClientId();
+                String menuItemClientId = menuItem instanceof UIComponent ? menuItem.getClientId() : menu.getClientId(context) + "_" + menuItem.getClientId();
                 String containerStyle = menuItem.getContainerStyle();
                 String containerStyleClass = menuItem.getContainerStyleClass();
 
@@ -76,7 +79,7 @@ public class RioMenuRenderer extends BaseMenuRenderer {
             }
             else if(element instanceof Submenu) {
                 Submenu submenu = (Submenu) element;
-                String submenuClientId = (submenu instanceof UIComponent) ? ((UIComponent) submenu).getClientId() : menu.getClientId(context) + "_" + submenu.getId();
+                String submenuClientId = submenu instanceof UIComponent ? ((UIComponent) submenu).getClientId() : menu.getClientId(context) + "_" + submenu.getId();
                 String style = submenu.getStyle();
                 String styleClass = submenu.getStyleClass();
 
@@ -166,7 +169,7 @@ public class RioMenuRenderer extends BaseMenuRenderer {
         String style = menuitem.getStyle();
         String defaultStyleClass = "menulink ripplelink";
         String styleClass = menuitem.getStyleClass();
-        styleClass = (styleClass) == null ? defaultStyleClass: defaultStyleClass + " " + styleClass;
+        styleClass = styleClass == null ? defaultStyleClass: defaultStyleClass + " " + styleClass;
 
         writer.startElement("a", null);
         if(title != null) writer.writeAttribute("title", title, null);
@@ -213,10 +216,10 @@ public class RioMenuRenderer extends BaseMenuRenderer {
                     command = menuitem.isAjax() ? buildAjaxRequest(context, menu, (AjaxSource) menuitem, form, params) : buildNonAjaxRequest(context, menu, form, menuClientId, params, true);
                 } 
                 else {
-                    command = menuitem.isAjax() ? buildAjaxRequest(context, (AjaxSource) menuitem, form) : buildNonAjaxRequest(context, ((UIComponent) menuitem), form, ((UIComponent) menuitem).getClientId(context), true);
+                    command = menuitem.isAjax() ? buildAjaxRequest(context, (AjaxSource) menuitem, form) : buildNonAjaxRequest(context, (UIComponent) menuitem, form, ((UIComponent) menuitem).getClientId(context), true);
                 }
 
-                onclick = (onclick == null) ? command : onclick + ";" + command;
+                onclick = onclick == null ? command : onclick + ";" + command;
             }
 
             if(onclick != null) {
