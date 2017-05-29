@@ -15,19 +15,19 @@ public class AppRN<ED extends AppED<PK>, PK> implements Serializable{
 
     @TransactionAttribute(SUPPORTS)
     public ED consulta(PK id) {
-        return bd.consulta(id);
+        return getBd().consulta(id);
     }
 
     public ED inclui(ED ed) {
-        return bd.inclui(ed);
+        return getBd().inclui(ed);
     }
 
     public ED altera(ED ed) {
-        return bd.altera(ed);
+        return getBd().altera(ed);
     }
 
     public void exclui(ED ed) {
-        bd.exclui(ed);
+    	getBd().exclui(ed);
     }
 
     public void exclui(List<ED> eds) {
@@ -38,15 +38,15 @@ public class AppRN<ED extends AppED<PK>, PK> implements Serializable{
 
     @TransactionAttribute(SUPPORTS)
     public List<ED> lista(ED ped){
-        return bd.lista(ped);
+        return getBd().lista(ped);
     }
 
     @TransactionAttribute(SUPPORTS)
     public int conta(ED ped){
-        return bd.conta(ped);
+        return getBd().conta(ped);
     }
 
-    public void setBD(AppBD<ED, PK> bd) {
-        this.bd = bd;
-    }
+	public AppBD<ED, PK> getBd() {
+		return bd;
+	}
 }

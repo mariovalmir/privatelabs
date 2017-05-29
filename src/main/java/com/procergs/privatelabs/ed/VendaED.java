@@ -18,6 +18,8 @@ public class VendaED {
     private Double valorTotal;
     @Column(name = "DATA_VENDA")
     private Calendar dataVenda;
+    @Column
+    private String vendedor;
 
     public Long getIdVenda() {
         return idVenda;
@@ -42,4 +44,12 @@ public class VendaED {
     public void setDataVenda(Calendar dataVenda) {
         this.dataVenda = dataVenda;
     }
+
+	public String getVendedor() {
+		return vendedor;
+	}
+
+	public void setVendedor(String vendedor) {
+		this.vendedor = vendedor;
+	}
 }

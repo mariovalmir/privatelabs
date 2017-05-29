@@ -3,10 +3,12 @@ package com.procergs.privatelabs.ed;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="ESTOQUE")
+@NamedQuery(name = "EstoqueED.consulta", query = "select c from EstoqueED c where c.idEstoque = :id")
 public class EstoqueED {
 
     @Id
