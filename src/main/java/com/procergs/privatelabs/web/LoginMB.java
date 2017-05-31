@@ -13,7 +13,6 @@ import com.procergs.privatelabs.ed.UsuarioED;
 import com.procergs.privatelabs.login.UsuarioRN;
 import com.procergs.privatelabs.util.FacesUtil;
 
-
 @ManagedBean
 public class LoginMB implements Serializable {
 

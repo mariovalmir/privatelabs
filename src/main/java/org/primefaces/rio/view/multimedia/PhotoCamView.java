@@ -17,19 +17,21 @@ package org.primefaces.rio.view.multimedia;
 
 import java.io.File;
 import java.io.IOException;
+
 import javax.faces.FacesException;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.imageio.stream.FileImageOutputStream;
 import javax.servlet.ServletContext;
+
 import org.primefaces.event.CaptureEvent;
 
 @ManagedBean
 @ViewScoped
-public class PhotoCamView {
+public class PhotoCamView{
     
-    private String filename;
+	private String filename;
     
     private String getRandomImageName() {
 		int i = (int) (Math.random() * 10000000);

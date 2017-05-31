@@ -8,10 +8,8 @@ import java.util.List;
 import javax.ejb.TransactionAttribute;
 
 
-public class AppRN<ED extends AppED<PK>, PK> implements Serializable{
+public abstract class AppRN<ED extends AppED<PK>, PK> implements Serializable{
     private static final long serialVersionUID = 1L;
-
-    private AppBD<ED, PK> bd;
 
     @TransactionAttribute(SUPPORTS)
     public ED consulta(PK id) {
@@ -46,7 +44,5 @@ public class AppRN<ED extends AppED<PK>, PK> implements Serializable{
         return getBd().conta(ped);
     }
 
-	public AppBD<ED, PK> getBd() {
-		return bd;
-	}
+	public abstract AppBD<ED, PK> getBd();
 }

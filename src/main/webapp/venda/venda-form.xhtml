@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/layout-rio.xhtml">
+	<ui:define name="body">
+		<h:form prependId="false">
+			<p:messages id="messages" showDetail="true" sticky="true" />
+			<p:panel header="Revisando Venda">
+				<div class="Container100 ui-fluid">
+		            <div class="ContainerIndent">
+		                <div class="Card ShadowEffect">
+							<p:outputLabel for="unidade" value="Unidade Selecionada:" />
+							<p:inputText id="unidade" value="#{vendaFormMB.unidade.nome}"/>
+							<p:outputLabel for="vendedor" value="Vendedor Selecionado:" />
+							<p:inputText id="vendedor" value="#{vendaFormMB.vendedor.nome}"/>
+							<p:separator/>
+							<p:dataTable var="produto" value="#{vendaFormMB.produtos.target}" editable="true" editMode="cell" emptyMessage="Nenhum registro encontrado">
+								<p:column headerText="Nome">
+									<h:outputText value="#{produto.nome}" />
+								</p:column>
+								<p:column headerText="Id">
+					            	<p:cellEditor>
+					                	<f:facet name="output"><h:outputText value="#{produto.quantidade}" /></f:facet>
+					                	<f:facet name="input"><p:inputMask value="#{produto.quantidade}" style="width:96%" mask="?9999"/></f:facet>
+					              	</p:cellEditor>
+					         	</p:column>
+							</p:dataTable>
+						</div>
+					</div>
+				</div>
+			</p:panel>
+		</h:form>
+	</ui:define>
+</ui:composition>

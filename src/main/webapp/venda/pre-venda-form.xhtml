@@ -1,30 +1,39 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:p="http://primefaces.org/ui" template="/WEB-INF/templates/layout-rio.xhtml">
-
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" 
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core" 
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" 
+	template="/WEB-INF/templates/layout-rio.xhtml">
+	<f:metadata>
+  		<f:viewAction action="#{vendaFormMB.initTela}" />
+	</f:metadata>
 	<ui:define name="body">
 		<h:form prependId="false">
-			<p:messages id="messages" showDetail="true" sticky="true" />
-			<p:panel header="Seleção de produtos">
-		<div class="Container100 ui-fluid">
-            <div class="ContainerIndent">
-                <div class="Card ShadowEffect">
-				<p:outputLabel for="unidade" value="Unidades:" />
-				<p:selectOneMenu id="unidade" value="#{vendaFormMB.unidades}">
-					<f:selectItem itemLabel="Nenhum" itemValue="#{null}" />
-					<f:selectItems value="#{vendaFormMB.unidades}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}" />
-				</p:selectOneMenu>
-				<p:separator/>
-                <p:pickList value="#{vendaFormMB.produtos}" var="produto" effect="bounce"
-					itemValue="#{produto}" itemLabel="#{produto.nome}"
-					showCheckbox="true" responsive="true" showSourceFilter="true"
-					showTargetFilter="true" filterMatchMode="contains">
-				
-				<f:facet name="sourceCaption">Disponiveis</f:facet>
-				<f:facet name="targetCaption">Selecionados</f:facet>
-			</p:pickList>
-			</div></div></div>
-			<p:commandButton value="#{msg['label.next']}" icon="fa fa-plus" />
+			<p:messages id="messages" showDetail="true" sticky="true" autoUpdate="true"/>
+			<p:panel id="filtros" header="Seleção de produtos">
+				<div class="Container100 ui-fluid">
+		            <div class="ContainerIndent">
+		                <div class="Card ShadowEffect">
+							<p:outputLabel for="unidade" value="Unidades:" />
+							<p:selectOneMenu id="unidade" value="#{vendaFormMB.unidade}" converter="entityConverter">
+								<f:selectItem itemLabel="Nenhum" itemValue="#{null}" />
+								<f:selectItems value="#{vendaFormMB.unidades}" var="unidade" itemValue="#{unidade}" itemLabel="#{unidade.nome}"/>
+							</p:selectOneMenu>
+							<p:outputLabel for="vendedor" value="Vendedores:" />
+							<p:selectOneMenu id="vendedor" value="#{vendaFormMB.vendedor}" converter="entityConverter">
+								<f:selectItem itemLabel="Nenhum" itemValue="#{null}" />
+								<f:selectItems value="#{vendaFormMB.vendedores}" var="vendedor" itemValue="#{vendedor}" itemLabel="#{vendedor.nome}"/>
+							</p:selectOneMenu>
+							<p:separator/>
+			                <p:pickList value="#{vendaFormMB.produtos}" var="produto" effect="bounce" itemValue="#{produto}" itemLabel="#{produto.nome}" 
+		                	responsive="true" showSourceFilter="true" showTargetFilter="true" filterMatchMode="contains" converter="produtoConverter">
+								<f:facet name="sourceCaption">Disponiveis</f:facet>
+								<f:facet name="targetCaption">Selecionados</f:facet>
+							</p:pickList>
+						</div>
+					</div>
+				</div>
+				<p:commandButton value="#{msg['label.next']}" icon="fa fa-plus" action="#{vendaFormMB.redirecionaTelaVenda}"/>
 			</p:panel>
 		</h:form>
 	</ui:define>

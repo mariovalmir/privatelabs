@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.procergs.privatelabs.infra.AppED;
 
@@ -31,6 +32,9 @@ public class ProdutoED  extends AppED<Long>{
     private Double valorCusto;
     @Column
     private String referencia;
+    @Transient
+    private Integer quantidade;
+    
 
     public Integer getConcentracao() {
         return concentracao;
@@ -80,5 +84,13 @@ public class ProdutoED  extends AppED<Long>{
 	@Override
 	public String toString() {
 		return nome;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
 	}
 }
